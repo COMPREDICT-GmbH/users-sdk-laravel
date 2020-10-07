@@ -17,8 +17,8 @@
         }
     ],
     "require": {
-        "php": ">=7.0",
-        "illuminate/support": "~5.1",
+        "php": ">=7.1",
+        "illuminate/support": "~5.1|^6.0",
         "compredict/users-sdk": "dev-master"
     },
     "require-dev": {
