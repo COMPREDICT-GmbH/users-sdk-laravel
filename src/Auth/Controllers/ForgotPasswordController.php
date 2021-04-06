@@ -3,6 +3,8 @@
 namespace Compredict\User\Auth\Controllers;
 
 use App\Http\Controllers\Controller;
+use \Illuminate\Http\Request;
+use Illuminate\Support\Facades\Password;
 
 class ForgotPasswordController extends Controller
 {
@@ -40,12 +42,12 @@ class ForgotPasswordController extends Controller
     /**
      * Validate the email for the given request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return void
+     * @param \Illuminate\Http\Request $request
+     * @return mixed
      */
     protected function validateEmail(Request $request)
     {
-        $request->validate(['email' => 'required|email']);
+        return $request->validate(['email' => 'required|email']);
     }
 
     /**
@@ -82,7 +84,8 @@ class ForgotPasswordController extends Controller
      */
     public function sendResetLinkEmail(Request $request)
     {
-        $this->validateEmail($request);
+        $validation = $this->validateEmail($request);
+        $email = $validation['email'];
 
         $response = \App::make('CP_User')::resetPassword($email);
 
