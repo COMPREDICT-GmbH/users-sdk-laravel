@@ -48,6 +48,12 @@ trait APITrait
         return is_object($response) ? self::processResponse($response) : $response;
     }
 
+	public static function updateUser($userToken, $updatedFields)
+	{
+		$response = App::make('CP_User')::updateUser($userToken, $updatedFields);
+		return self::processResponse($response);
+	}
+
     public static function processResponse($response)
     {
         if ($response === false) {
